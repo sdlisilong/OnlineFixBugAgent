@@ -1,0 +1,48 @@
+<assembly>
+    <id>assembly</id>
+    <formats>
+        <!--打包的文件类型-->
+        <format>tar.gz</format>
+    </formats>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <!--<useProjectArtifact>false</useProjectArtifact>-->
+
+    <fileSets>
+        <fileSet>
+            <directory>src/main/assembly/bin</directory>
+            <outputDirectory>/bin</outputDirectory>
+            <includes>
+                <include>*.sh</include>
+            </includes>
+            <!--打包文件权限-->
+            <fileMode>0755</fileMode>
+        </fileSet>
+
+        <fileSet>
+            <!--原文件目录-->
+            <directory>src/main/resources</directory>
+            <!--打包的目录-->
+            <outputDirectory>/conf</outputDirectory>
+        </fileSet>
+        <!--将项目文件打包为jar文件-->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>/lib</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <excludes>
+                <exclude>AloneApp*.jar</exclude>
+            </excludes>
+        </fileSet>
+
+    </fileSets>
+    <!--添加 jar的打包-->
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>
